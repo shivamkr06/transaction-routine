@@ -42,7 +42,7 @@ public class TransactionControllerTest {
     void testCreateTransaction() throws Exception {
         TransactionRequest transactionRequest = new TransactionRequest();
         transactionRequest.setAccountId(1L);
-        transactionRequest.setOperationTypeId(1);
+        transactionRequest.setOperationTypeId(1L);
         transactionRequest.setAmount(100.0);
 
         Transaction transaction = new Transaction();

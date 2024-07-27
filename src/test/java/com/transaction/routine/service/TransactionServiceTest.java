@@ -46,11 +46,11 @@ public class TransactionServiceTest {
         account.setAccountId(1L);
         account.setDocumentNumber("12345678900");
 
-        OperationType operationType = new OperationType(1, "Normal Purchase");
+        OperationType operationType = new OperationType(1L, "Normal Purchase");
 
         TransactionRequest transactionRequest = new TransactionRequest();
         transactionRequest.setAccountId(1L);
-        transactionRequest.setOperationTypeId(1);
+        transactionRequest.setOperationTypeId(1L);
         transactionRequest.setAmount(100.0);
 
         Transaction txn = new Transaction();
@@ -59,7 +59,7 @@ public class TransactionServiceTest {
         txn.setOperationType(operationType);
         
         when(accountRepository.findById(1L)).thenReturn(Optional.of(account));
-        when(operationTypeRepository.findById(1)).thenReturn(Optional.of(operationType));
+        when(operationTypeRepository.findById(1L)).thenReturn(Optional.of(operationType));
         when(transactionRepository.save(any(Transaction.class))).thenReturn(txn);
 
         Transaction transaction = transactionService.createTransaction(transactionRequest);

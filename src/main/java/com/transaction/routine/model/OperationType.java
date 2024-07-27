@@ -2,16 +2,27 @@ package com.transaction.routine.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class OperationType {
-    private Integer operationTypeId;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long operationTypeId;
+
+    @Column(nullable = false)
     private String description;
-
-	public Integer getOperationTypeId() {
+    
+	public Long getOperationTypeId() {
 		return operationTypeId;
 	}
 
-	public void setOperationTypeId(Integer operationTypeId) {
+	public void setOperationTypeId(Long operationTypeId) {
 		this.operationTypeId = operationTypeId;
 	}
 
@@ -22,8 +33,10 @@ public class OperationType {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+    public OperationType() {}
 
-	public OperationType(Integer operationTypeId, String description) {
+	public OperationType(Long operationTypeId, String description) {
 		super();
 		this.operationTypeId = operationTypeId;
 		this.description = description;

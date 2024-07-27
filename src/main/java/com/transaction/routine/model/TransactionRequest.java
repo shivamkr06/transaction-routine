@@ -2,17 +2,17 @@ package com.transaction.routine.model;
 
 public class TransactionRequest {
 
-    private Integer operationTypeId;
+    private Long operationTypeId;
 
     private Long accountId;
 
     private double amount;
 
-	public Integer getOperationTypeId() {
+	public Long getOperationTypeId() {
 		return operationTypeId;
 	}
 
-	public void setOperationTypeId(Integer operationTypeId) {
+	public void setOperationTypeId(Long operationTypeId) {
 		this.operationTypeId = operationTypeId;
 	}
 

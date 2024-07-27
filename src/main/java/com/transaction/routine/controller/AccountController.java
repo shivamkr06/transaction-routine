@@ -7,13 +7,18 @@ import org.springframework.web.bind.annotation.*;
 import com.transaction.routine.model.Account;
 import com.transaction.routine.service.AccountService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/accounts")
+@Tag(name = "Account Controller", description = "API for managing accounts")
 public class AccountController {
 
     @Autowired
     private AccountService accountService;
 
+    @Operation(summary = "Create a new account")
     @PostMapping("/createAccount")
     public ResponseEntity<?> createAccount(@RequestBody Account account) {
     	try {
@@ -23,6 +28,7 @@ public class AccountController {
 		}
     }
 
+    @Operation(summary = "Retrieve account information")
     @GetMapping("/{accountId}")
     public ResponseEntity<?> getAccount(@PathVariable Long accountId) {
     	try {

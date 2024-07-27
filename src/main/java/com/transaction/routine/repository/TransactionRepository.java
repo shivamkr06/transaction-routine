@@ -1,31 +1,18 @@
 package com.transaction.routine.repository;
 
-
-import org.springframework.stereotype.Repository;
-
 import com.transaction.routine.model.Transaction;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import jakarta.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository
-public class TransactionRepository {
-
-    private final List<Transaction> transactions = new ArrayList<>();
-    private long nextId = 1;
-
-    public Transaction save(Transaction transaction) {
-        transaction.setTransactionId(nextId++);
-        transactions.add(transaction);
-        return transaction;
-    }
-
-    public Optional<Transaction> findById(Long transactionId) {
-        return transactions.stream().filter(t -> t.getTransactionId().equals(transactionId)).findFirst();
-    }
-
-    public List<Transaction> findAll() {
-        return new ArrayList<>(transactions);
-    }
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+	
+	 @Transactional
+	 default Transaction saveAndReturn(Transaction transaction) {
+		 return save(transaction);
+	 }
 }
+
